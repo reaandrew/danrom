@@ -5,17 +5,22 @@
     <link href="https://fonts.googleapis.com/css2?family=Pangolin&display=swap" rel="stylesheet"> 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
+    <script src="https://unpkg.com/vue-router@2.0.0/dist/vue-router.js"></script>
     <link href="css/site.css" rel="stylesheet">
-    <script>
-    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.5.0/jszip.min.js"></script>
   </head>
   <body>
     <div class="container">
       <div id="app">
         <div class="row mb-4">
           <div class="col">
-            <h1>Danrom</h1>
-            <h3>A randomly useful random value picker for:</h3> <h2>{{title}}</h2>
+            <h1>Danrom</h1> 
+            <p>A randomly useful random value picker for:</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <h2>{{title}}</h2>
           </div>
         </div>
         <div class="row">
@@ -27,7 +32,7 @@
             </div>
             <div class="row">
               <div class="col">
-                <a href="#" v-on:click="generate">Generate</a>
+                <a href="#" v-on:click.prevent.stop="generate($event)">Generate</a>
               </div>
             </div>
           </div>
@@ -38,6 +43,11 @@
               v-bind:value="item.value">
             </value-item>
             <value-input></value-input>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <p>Share your random data picker with <a href="{{url}}">{{url}}</a>
           </div>
         </div>
       </div>
