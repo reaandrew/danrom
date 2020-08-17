@@ -25,18 +25,18 @@ Vue.component('value-item', {
   },
   template: `<div class="row" v-if="editing">
           <div class="col">
-            <input type="text" v-model="value">
+            <input type="text" v-model="value" class="form-control">
           </div>
-          <div class="col">
-            <button v-on:click="update">
+          <div class="col-2">
+            <button v-on:click="update" class="form-control btn-block">
               Update
             </button>
           </div>
         </div>
         <div class="row" v-else>
           <div class="col" v-on:click="edit">{{ value  }}</div>
-          <div class="col">
-            <button v-on:click="remove">
+          <div class="col-2">
+            <button v-on:click="remove" class="form-control btn-block">
               Remove
             </button>
           </div>
@@ -60,11 +60,12 @@ Vue.component('value-input', {
           <div class="col">
             <input type="text"
                   v-model="value"
-                  placeholder="next value">
+                  placeholder="next value"
+                  class="form-control" >
             </input>
           </div>
-          <div class="col">
-            <button v-on:click="add">
+          <div class="col-2">
+            <button v-on:click="add" class="form-control btn-block" >
               Add
             </button>
           </div>
@@ -104,7 +105,7 @@ let v = new Vue({
   },
   methods:{
     generate: function(e){
-      this.value = this.items[getRandomInt(this.items.length)].value;
+      this.value = "Your random pick is - " + this.items[getRandomInt(this.items.length)].value;
       this.$router.push({ path:"/saved" , query: { data: encodeURI(JSON.stringify(this.items.map(e=>e.value)))  } })
       this.url = "https://danrom.com/#"+this.$router.history.current.fullPath;
       e.stopPropagation();

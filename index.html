@@ -20,7 +20,7 @@
         </div>
         <div class="row">
           <div class="col">
-            <h2>{{title}}</h2>
+            <h2 class="display-2 text-center">{{title}}</h2>
           </div>
         </div>
         <div class="row">
@@ -29,20 +29,20 @@
               <div class="col">
                 <h3 class="alert alert-success">{{ value }}</h3> 
               </div>
+              <div class="col-2">
+                <a href="#" class="btn btn-dark btn-block" v-on:click.prevent.stop="generate($event)">Generate</a>
+              </div>
             </div>
             <div class="row">
               <div class="col">
-                <a href="#" v-on:click.prevent.stop="generate($event)">Generate</a>
+                <value-item
+                  v-for="item in items"
+                  v-bind:key="item.value"
+                  v-bind:value="item.value">
+                </value-item>
+                <value-input></value-input>
               </div>
             </div>
-          </div>
-          <div class="col">
-            <value-item
-              v-for="item in items"
-              v-bind:key="item.value"
-              v-bind:value="item.value">
-            </value-item>
-            <value-input></value-input>
           </div>
         </div>
         <div class="row">
