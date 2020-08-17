@@ -116,9 +116,11 @@ let v = new Vue({
     title: "INSERT TITLE HERE...",
     value: "Click generate ...",
     items: [{
-      value: 'Andy Rea'
+      value: 'Cake'
     },{
-      value: 'Andy Stone'
+      value: 'Crisps'
+    },{
+      value: 'Chocolate'
     }]
   },
 })
