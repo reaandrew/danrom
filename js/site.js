@@ -107,7 +107,7 @@ let v = new Vue({
     generate: function(e){
       this.value = "Your random pick is - " + this.items[getRandomInt(this.items.length)].value;
       this.$router.push({ path:"/saved" , query: { data: encodeURI(JSON.stringify(this.items.map(e=>e.value)))  } })
-      this.url = "https://danrom.com/#"+this.$router.history.current.fullPath;
+      this.url = "https://andrewrea.co.uk/danrom/#"+this.$router.history.current.fullPath;
       e.stopPropagation();
     }
   },
