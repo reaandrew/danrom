@@ -25,17 +25,16 @@ export default{
     }
   },
   template: `<div class="row m-2" v-if="editing">
+          <div class="col-2">
+            <button v-on:click="update" class="form-control btn-dark">
+              <span class="fas fa-check"></span>
+            </button>
+          </div>
           <div class="col p-0">
             <input type="text" v-model="value" class="form-control">
           </div>
-          <div class="col-2">
-            <button v-on:click="update" class="form-control btn-block">
-              Update
-            </button>
-          </div>
         </div>
         <div class="row m-2" v-else>
-          <div class="col border-bottom" v-on:click="edit">{{ value  }}</div>
           <div class="col-2">
             <div class="btn-group" role="group" aria-label="Basic example">
               <button v-on:click="edit" class="form-control btn-dark mr-1">
@@ -46,5 +45,6 @@ export default{
               </button>
             </div>
           </div>
+          <div class="col border-bottom mt-2" v-on:click="edit">{{ value  }}</div>
         </div>`
 };
