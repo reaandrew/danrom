@@ -64,7 +64,7 @@ export default{
       </div>
       <div class="row">
         <div class="col">
-          <a href=""><i class="fas fa-cog"></i> Settings</a>
+          <a href=""><i class="fas fa-cog"></i> Tweak your selector</a>
           <a href=""><i class="fas fa-globe"></i> Language</a>
         </div>
       </div>
