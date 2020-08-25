@@ -7,15 +7,21 @@ Simple play project to learn Vue.js
 
 Run `make deploy`
 
-This runs two tasks:
+This runs three tasks:
 
-1. Run Terraform to configure the hosting
+1. Init the Terraform plugins locally
 
 ```
-terraform apply ./infrastructure
+terraform init ./infrastructure
 ```
 
-2. Deploy the files to the S3 bucket
+2. Run Terraform to configure and provision the infrastructure
+
+```
+terraform apply -auto-approve ./infrastructure
+```
+
+3. Deploy the files to the S3 bucket
 
 ```
 aws s3 cp ./src s3://randomselector.io/ --recursive
