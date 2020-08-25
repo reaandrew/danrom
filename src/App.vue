@@ -1,25 +1,42 @@
 <template>
-  <div id="app"> <div class="container">
-      <div class="row mb-4">
-        <div class="col text-center">
-          <h1><img src="./assets/random-selector-logo.svg" alt="Random Selector Logo" height="100" width="100" />Random Selector</h1> 
-          <h2>The Randomly Useful Random Selector of Non-Random Data</h2> 
+  <div id="app">
+    <div class="container">
+      <div class="row mb-1">
+        <div class="col">
+          <img
+            src="./assets/random-selector-logo.svg"
+            alt="Random Selector Logo"
+            class="logo"
+          />
+          <h1>
+            Random Selector
+          </h1>
         </div>
       </div>
       <div class="row">
-        <div class="col-2"></div>
         <div class="col">
+          <h2>The Randomly Useful Random Selector of Non-Random Data</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col col-sm-12">
           <div class="row">
             <div class="col">
               <div class="row">
                 <div class="col">
-                  <h3 class="alert text-center" v-html="value"></h3> 
+                  <h3 class="alert text-center" v-html="value"></h3>
                 </div>
               </div>
               <div class="row">
                 <div class="col">
                   <!--<h3 class="alert alert-dark"><a href="#" v-on:click.prevent.stop="generate($event)">Generate</a></h3>-->
-                  <button class="form-control btn-dark btn-block" v-on:click.prevent.stop="generate($event)">Pick a random value</button>
+                  <button
+                    class="form-control btn-dark btn-block"
+                    v-on:click.prevent.stop="generate($event)"
+                  >
+                    Pick a random value
+                  </button>
                 </div>
               </div>
               <div class="row mt-4">
@@ -27,16 +44,23 @@
                   <ValueItem
                     v-for="item in items"
                     v-bind:key="item.value"
-                    v-bind:value="item.value">
+                    v-bind:value="item.value"
+                  >
                   </ValueItem>
-                  <ValueInput class="mt-4"></ValueInput>
+                  <ValueInput
+                    v-on:on-item-submitted="handleOnItemSubmitted"
+                    class="mt-4"
+                  ></ValueInput>
                 </div>
               </div>
             </div>
           </div>
           <div class="row mt-4">
             <div class="col text-center">
-              <p>Share your custom list with your friends, family or colleagues below</p>
+              <p>
+                Share your custom list with your friends, family or colleagues
+                below
+              </p>
             </div>
           </div>
           <!--
@@ -49,13 +73,18 @@
           -->
           <div class="row mt-4">
             <div class="col">
-              <p>Icon created using <a href="https://www.blobmaker.app/">https://www.blobmaker.app/</a></p>
+              <p>
+                Icon created using
+                <a href="https://www.blobmaker.app/"
+                  >https://www.blobmaker.app/</a
+                >
+              </p>
             </div>
           </div>
         </div>
-        <div class="col-2"></div>
+        <div class="col-md-2"></div>
       </div>
-		</div>
+    </div>
   </div>
 </template>
 
@@ -83,7 +112,6 @@ export default {
 
     this.$root.$on("item-updated", e => {
       this.items[this.items.findIndex(el => el.value === e.old)].value = e.new;
-      console.log(e);
     });
 
     if (this.$router.history.current.query.data) {
@@ -98,6 +126,11 @@ export default {
     }
   },
   methods: {
+    handleOnItemSubmitted: function(e) {
+      this.items.push({
+        value: e.item
+      });
+    },
     generate: function(e) {
       let randomValue = this.items[Utils.getRandomInt(this.items.length)].value;
       this.value = `Your random pick is -  <strong>${randomValue}</strong>`;
@@ -140,16 +173,12 @@ export default {
   color: #2c3e50;
 }
 
-#nav {
-  padding: 30px;
+.logo{
+  width: 40%;
+  max-width: 100px;
 }
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
+h2 {
+  font-size: 1em;
 }
 </style>

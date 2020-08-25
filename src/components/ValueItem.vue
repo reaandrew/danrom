@@ -1,27 +1,29 @@
 <template>
-    <div class="row m-2" v-if="editing">
-          <div class="col-2">
-            <button v-on:click="update" class="form-control btn-dark">
-              <span class="fas fa-check"></span>
-            </button>
-          </div>
-          <div class="col p-0">
-            <input type="text" v-model="currentValue" class="form-control">
-          </div>
-        </div>
-        <div class="row m-2" v-else>
-          <div class="col-2">
-            <div class="btn-group" role="group" aria-label="Basic example">
-              <button v-on:click="edit" class="form-control btn-dark mr-1">
-                <span class="fas fa-edit fa-1g"></span>
-              </button>
-              <button v-on:click="remove" class="form-control btn-dark">
-                <span class="fas fa-trash-alt"></span>
-              </button>
-            </div>
-          </div>
-          <div class="col border-bottom mt-2 text-left" v-on:click="edit">{{ value  }}</div>
-        </div>
+  <div class="row mt-2" v-if="editing">
+    <div class="col-4">
+      <button v-on:click="update" class="form-control btn-dark">
+        <span class="fas fa-check"></span>
+      </button>
+    </div>
+    <div class="col p-0 mr-2">
+      <input type="text" v-model="currentValue" class="form-control" />
+    </div>
+  </div>
+  <div class="row mt-2" v-else>
+    <div class="col-4">
+      <div class="btn-group" role="group" aria-label="Basic example">
+        <button v-on:click="edit" class="form-control btn-dark mr-1">
+          <span class="fas fa-edit fa-1g"></span>
+        </button>
+        <button v-on:click="remove" class="form-control btn-dark">
+          <span class="fas fa-trash-alt"></span>
+        </button>
+      </div>
+    </div>
+    <div class="col border-bottom mt-2 text-left mr-2" v-on:click="edit">
+      {{ value }}
+    </div>
+  </div>
 </template>
 
 <script>
@@ -36,7 +38,7 @@ export default {
     };
   },
   mounted() {
-    this.currentValue = this.value
+    this.currentValue = this.value;
   },
   methods: {
     remove: function() {
@@ -57,5 +59,4 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style></style>
