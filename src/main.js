@@ -1,6 +1,10 @@
-import App from './components/App.js';
+import Vue from "vue";
+import App from "./App.vue";
+
+Vue.config.productionTip = false;
 
 new Vue({
-    router: new VueRouter({}),
-    render: h => h(App),
-}).$mount(`#app`);
+  render: function(h) {
+    return h(App);
+  }
+}).$mount("#app");

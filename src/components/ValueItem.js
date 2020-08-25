@@ -1,26 +1,26 @@
-export default{
-  name: 'ValueItem',
+export default {
+  name: "ValueItem",
   props: ["value"],
-  data: function(){
+  data: function() {
     return {
       oldValue: "",
       value: "",
       editing: false
-    }
+    };
   },
   methods: {
-    remove: function(e){
-      this.$root.$emit('item-removed', this.value)
+    remove: function() {
+      this.$root.$emit("item-removed", this.value);
     },
-    edit: function(e){
+    edit: function() {
       this.oldValue = this.value;
       this.editing = true;
     },
-    update: function(e){
+    update: function() {
       this.editing = false;
-      this.$root.$emit('item-updated', {
+      this.$root.$emit("item-updated", {
         new: this.value,
-        old: this.oldValue 
+        old: this.oldValue
       });
     }
   },

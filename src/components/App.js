@@ -1,65 +1,76 @@
-import Utils from './Utils.js';
-const ValueItem = () => import('./ValueItem.js');
-const ValueInput = () => import('./ValueInput.js');
+import Utils from "./Utils.js";
+const ValueItem = () => import("./ValueItem.js");
+const ValueInput = () => import("./ValueInput.js");
 
-export default{
-  name: 'App',
-	components: {
+export default {
+  name: "App",
+  components: {
     ValueItem,
-    ValueInput,
+    ValueInput
   },
-  mounted(){
-    this.$root.$on('item-removed', (e) => {
-      this.items = this.items.filter(item => (item.value != e));
-    })
+  mounted() {
+    this.$root.$on("item-removed", e => {
+      this.items = this.items.filter(item => item.value != e);
+    });
 
-    this.$root.$on('item-added', (e) => {
+    this.$root.$on("item-added", e => {
       this.items.push({
         value: e
-      })
-    })
+      });
+    });
 
-    this.$root.$on('item-updated', (e) => {
+    this.$root.$on("item-updated", e => {
       this.items[this.items.findIndex(el => el.value === e.old)].value = e.new;
       console.log(e);
-    })
+    });
 
-    if (this.$router.history.current.query.data){
-      var decodedValues=decodeURI(this.$router.history.current.query.data)
-      var json=JSON.parse(decodedValues)
+    if (this.$router.history.current.query.data) {
+      var decodedValues = decodeURI(this.$router.history.current.query.data);
+      var json = JSON.parse(decodedValues);
       this.items = json.map(e => {
-        return {value: e}
+        return { value: e };
       });
-      this.url = "https://andrewrea.co.uk/danrom/#"+this.$router.history.current.fullPath;
+      this.url =
+        "https://andrewrea.co.uk/danrom/#" +
+        this.$router.history.current.fullPath;
     }
   },
-  methods:{
-    generate: function(e){
+  methods: {
+    generate: function(e) {
       let randomValue = this.items[Utils.getRandomInt(this.items.length)].value;
-      this.value = `Your random pick is -  <strong>${randomValue}</strong>`
-      this.$router.push({ path:"/saved" , query: { data: encodeURI(JSON.stringify(this.items.map(e=>e.value)))  } })
-      this.url = "https://andrewrea.co.uk/danrom/#"+this.$router.history.current.fullPath;
+      this.value = `Your random pick is -  <strong>${randomValue}</strong>`;
+      this.$router.push({
+        path: "/saved",
+        query: { data: encodeURI(JSON.stringify(this.items.map(e => e.value))) }
+      });
+      this.url =
+        "https://andrewrea.co.uk/danrom/#" +
+        this.$router.history.current.fullPath;
       e.stopPropagation();
     }
   },
   data: function() {
-		return {
-			url:"#",
-			value: "",
-			items: [{
-				value: 'Cake'
-			},{
-				value: 'Crisps'
-			},{
-				value: 'Chocolate'
-			}]
-		}
+    return {
+      url: "#",
+      value: "",
+      items: [
+        {
+          value: "Cake"
+        },
+        {
+          value: "Crisps"
+        },
+        {
+          value: "Chocolate"
+        }
+      ]
+    };
   },
   template: `
 		<div class="container">
       <div class="row mb-4">
         <div class="col text-center">
-          <h1>Random Selector</h1> 
+          <h1><img src="/images/random-selector-logo.svg" alt="Random Selector Logo" height="100" width="100" />Random Selector</h1> 
           <h2>The Randomly Useful Random Selector of Non-Random Data</h1> 
         </div>
       </div>
@@ -91,9 +102,22 @@ export default{
               </div>
             </div>
           </div>
-          <div class="row mt-4" v-if="url != '#'">
+          <div class="row mt-4">
+            <div class="col text-center">
+              <p>Share your custom list with your friends, family or colleagues below</p>
+            </div>
+          </div>
+          <!--
+          <div class="row mt-4">
             <div class="col">
-              <p>Add a bookmark to save your random data selector</p>
+              <div class="fb-share-button" data-href="{{url}}" data-layout="button_count" data-size="large"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div>
+            </div>
+            <script type="IN/Share" data-url="http://developer.linkedin.com/"></script>
+          </div>
+          -->
+          <div class="row mt-4">
+            <div class="col">
+              <p>Icon created using <a href="https://www.blobmaker.app/">https://www.blobmaker.app/</a></p>
             </div>
           </div>
         </div>
@@ -101,4 +125,4 @@ export default{
       </div>
 		</div>
   `
-}
+};
