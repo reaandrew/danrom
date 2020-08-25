@@ -59,13 +59,8 @@ export default{
 		<div class="container">
       <div class="row mb-4">
         <div class="col text-center">
-          <h1>The Randomly Useful Random Selector of Non-Random Data</h1> 
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">
-          <a href=""><i class="fas fa-cog"></i> Tweak your selector</a>
-          <a href=""><i class="fas fa-globe"></i> Language</a>
+          <h1>Random Selector</h1> 
+          <h2>The Randomly Useful Random Selector of Non-Random Data</h1> 
         </div>
       </div>
       <div class="row">
@@ -98,7 +93,7 @@ export default{
           </div>
           <div class="row mt-4" v-if="url != '#'">
             <div class="col">
-              <p>Share your random data picker with {{url}}</p>
+              <p>Add a bookmark to save your random data selector</p>
             </div>
           </div>
         </div>
