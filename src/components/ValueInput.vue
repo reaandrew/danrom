@@ -21,13 +21,13 @@ export default {
   name: "ValueInput",
   data: function() {
     return {
-      nextItem: ""
+      nextItem: "fubar"
     };
   },
   methods: {
     add: function() {
       this.$emit("on-item-submitted", { item: this.nextItem });
-      this.value = "";
+      this.nextItem = "";
     }
   }
 };
