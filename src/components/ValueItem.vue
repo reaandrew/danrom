@@ -1,7 +1,7 @@
 <template>
-  <div class="row mt-2" v-if="editing">
+  <div class="row mt-2 edit-mode" v-if="editing">
     <div class="col-4">
-      <button v-on:click="update" class="form-control btn-dark">
+      <button v-on:click="update" class="form-control btn-dark btn-apply">
         <span class="fas fa-check"></span>
       </button>
     </div>
@@ -9,18 +9,18 @@
       <input type="text" v-model="currentValue" class="form-control" />
     </div>
   </div>
-  <div class="row mt-2" v-else>
+  <div class="row mt-2 view-mode" v-else>
     <div class="col-4">
       <div class="btn-group" role="group" aria-label="Basic example">
-        <button v-on:click="edit" class="form-control btn-dark mr-1">
+        <button v-on:click="edit" class="form-control btn-dark mr-1 btn-edit">
           <span class="fas fa-edit fa-1g"></span>
         </button>
-        <button v-on:click="remove" class="form-control btn-dark">
+        <button v-on:click="remove" class="form-control btn-dark btn-remove">
           <span class="fas fa-trash-alt"></span>
         </button>
       </div>
     </div>
-    <div class="col border-bottom mt-2 text-left mr-2" v-on:click="edit">
+    <div class="col border-bottom mt-2 text-left mr-2 item" v-on:click="edit">
       {{ value }}
     </div>
   </div>
@@ -42,7 +42,9 @@ export default {
   },
   methods: {
     remove: function() {
-      this.$root.$emit("item-removed", this.currentValue);
+      this.$emit("on-item-removed", {
+        item: this.currentValue
+      });
     },
     edit: function() {
       this.oldValue = this.currentValue;
@@ -50,7 +52,7 @@ export default {
     },
     update: function() {
       this.editing = false;
-      this.$root.$emit("item-updated", {
+      this.$emit("on-item-updated", {
         new: this.currentValue,
         old: this.oldValue
       });

@@ -1,9 +1,9 @@
 import { shallowMount } from "@vue/test-utils";
-import HelloWorld from "@/components/ValueInput.vue";
+import ValueInput from "@/components/ValueInput.vue";
 
 describe("ValueInput.vue", () => {
   it("submitting a value emits an on-item-submitted event", () => {
-    const wrapper = shallowMount(HelloWorld);
+    const wrapper = shallowMount(ValueInput);
     expect(wrapper.find("input").exists()).toBe(true);
 
     wrapper.find("input").setValue("fubar");
@@ -16,7 +16,7 @@ describe("ValueInput.vue", () => {
     ]);
   });
   it("submitting a value clears the value", () => {
-    const wrapper = shallowMount(HelloWorld);
+    const wrapper = shallowMount(ValueInput);
     expect(wrapper.find("input").exists()).toBe(true)
 
     wrapper.find("input").setValue("fubar");

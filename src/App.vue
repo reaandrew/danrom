@@ -30,18 +30,19 @@
               </div>
               <div class="row">
                 <div class="col">
-                  <!--<h3 class="alert alert-dark"><a href="#" v-on:click.prevent.stop="generate($event)">Generate</a></h3>-->
                   <button
                     class="form-control btn-dark btn-block"
                     v-on:click.prevent.stop="generate($event)"
                   >
-                    Pick a random value
+                    Select a random value
                   </button>
                 </div>
               </div>
               <div class="row mt-4">
                 <div class="col">
                   <ValueItem
+                    v-on:on-item-updated="handleOnItemUpdated"
+                    v-on:on-item-removed="handleOnItemRemoved"
                     v-for="item in items"
                     v-bind:key="item.value"
                     v-bind:value="item.value"
@@ -100,20 +101,6 @@ export default {
     ValueInput
   },
   mounted() {
-    this.$root.$on("item-removed", e => {
-      this.items = this.items.filter(item => item.value != e);
-    });
-
-    this.$root.$on("item-added", e => {
-      this.items.push({
-        value: e
-      });
-    });
-
-    this.$root.$on("item-updated", e => {
-      this.items[this.items.findIndex(el => el.value === e.old)].value = e.new;
-    });
-
     if (this.$router.history.current.query.data) {
       var decodedValues = decodeURI(this.$router.history.current.query.data);
       var json = JSON.parse(decodedValues);
@@ -126,21 +113,34 @@ export default {
     }
   },
   methods: {
-    handleOnItemSubmitted: function(e) {
+    handleOnItemUpdated(e) {
+      this.items[this.items.findIndex(el => el.value === e.old)].value = e.new;
+    },
+    handleOnItemRemoved(e) {
+      this.items = this.items.filter(item => item.value != e.item);
+    },
+    handleOnItemSubmitted(e) {
       this.items.push({
         value: e.item
       });
     },
-    generate: function(e) {
+    generate(e) {
       let randomValue = this.items[Utils.getRandomInt(this.items.length)].value;
       this.value = `Your random pick is -  <strong>${randomValue}</strong>`;
-      this.$router.push({
-        path: "/saved",
-        query: { data: encodeURI(JSON.stringify(this.items.map(e => e.value))) }
-      });
-      this.url =
-        "https://andrewrea.co.uk/danrom/#" +
-        this.$router.history.current.fullPath;
+      if (
+        this.$router.history.current.query.data !=
+        encodeURI(JSON.stringify(this.items.map(e => e.value)))
+      ) {
+        this.$router.push({
+          path: "/saved",
+          query: {
+            data: encodeURI(JSON.stringify(this.items.map(e => e.value)))
+          }
+        });
+        this.url =
+          "https://andrewrea.co.uk/danrom/#" +
+          this.$router.history.current.fullPath;
+      }
       e.stopPropagation();
     }
   },
@@ -173,7 +173,7 @@ export default {
   color: #2c3e50;
 }
 
-.logo{
+.logo {
   width: 40%;
   max-width: 100px;
 }

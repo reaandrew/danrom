@@ -21,7 +21,7 @@ export default {
   name: "ValueInput",
   data: function() {
     return {
-      nextItem: "fubar"
+      nextItem: ""
     };
   },
   methods: {
