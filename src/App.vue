@@ -25,13 +25,13 @@
             <div class="col">
               <div class="row">
                 <div class="col">
-                  <h3 class="alert text-center" v-html="value"></h3>
+                  <h3 class="alert text-center selected-value" v-html="value"></h3>
                 </div>
               </div>
               <div class="row">
                 <div class="col">
                   <button
-                    class="form-control btn-dark btn-block"
+                    class="form-control btn-dark btn-block btn-select"
                     v-on:click.prevent.stop="generate($event)"
                   >
                     Select a random value
@@ -64,14 +64,6 @@
               </p>
             </div>
           </div>
-          <!--
-          <div class="row mt-4">
-            <div class="col">
-              <div class="fb-share-button" data-href="{{url}}" data-layout="button_count" data-size="large"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div>
-            </div>
-            <script type="IN/Share" data-url="http://developer.linkedin.com/"></script>
-          </div>
-          -->
           <div class="row mt-4">
             <div class="col">
               <p>

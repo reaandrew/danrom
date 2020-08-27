@@ -33,11 +33,11 @@ describe("ValueItem.vue", () => {
 
     it("changes to edit mode", () => {
       expect(wrapper.vm.$data.editing).toBe(true);
-    })
+    });
 
     it("sets the old value to the current value", () => {
       expect(wrapper.vm.$data.oldValue).toBe(expectedValue);
-    })
+    });
   });
 
   it("edit mode is displayed", () => {
@@ -102,6 +102,6 @@ describe("ValueItem.vue", () => {
           item: expectedValue
         }
       ]);
-    })
-  })
+    });
+  });
 });

@@ -17,7 +17,7 @@ describe("ValueInput.vue", () => {
   });
   it("submitting a value clears the value", () => {
     const wrapper = shallowMount(ValueInput);
-    expect(wrapper.find("input").exists()).toBe(true)
+    expect(wrapper.find("input").exists()).toBe(true);
 
     wrapper.find("input").setValue("fubar");
 
